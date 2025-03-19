@@ -10,5 +10,6 @@ public class InventarioApplication {
 		SpringApplication.run(InventarioApplication.class, args);
 	}
 	//esto es un ejemplo
+	public void method(){}
 
 }
