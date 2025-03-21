@@ -30,7 +30,7 @@ jobs:
       uses: SonarSource/sonarcloud-github-action@v2.1
       with:
         organization: julian022  # Tu nombre de usuario en SonarCloud
-        token: ${{ secrets.SONAR_TOKEN }}  # Usa el token configurado en GitHub Secrets
+        token: ${{1bcc5c902b3f4253bcc216d52cbf86b53a186413 }}  # Usa el token configurado en GitHub Secrets
 
     - name: Build with Gradle Wrapper and analyze with SonarCloud
       run: ./gradlew clean build sonarqube -Dsonar.projectKey=your_project_key  # Reemplaza con tu projectKey
