@@ -7,13 +7,23 @@ on:
     branches: [ "develop" ]
 
 jobs:
+  
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write  # Necesario para el escaneo con SonarCloud
 
+      
     steps:
+    - name: Checkout código
+      uses: actions/checkout@v4
+
+    - name: Dar permisos de ejecución al Gradle Wrapper
+      run: chmod +x gradlew
+
+    - name: Construir con Gradle
+      run: ./gradlew build
     - uses: actions/checkout@v4
     - name: Set up JDK 17
       uses: actions/setup-java@v4
