@@ -37,8 +37,29 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2.1
         with:
           organization: "julian022"  # Nombre de usuario en SonarCloud
-          token: "1bcc5c902b3f4253bcc216d52cbf86b53a186413"  # Token en texto plano 
+          token: "1bcc5c902b3f4253bcc216d52cbf86b53a186413"  # Token en texto plano (no recomendado)
 
       - name: Build and analyze with SonarCloud
         run: |
-          ./
+          ./gradlew clean build sonarqube \
+            -Dsonar.projectKey=your_project_key \
+            -Dsonar.organization=julian022 \
+            -Dsonar.host.url=https://sonarcloud.io
+
+  dependency-submission:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Generate and submit dependency graph
+        uses: gradle/actions/dependency-submission@v3  # Usa la versión estable más reciente
