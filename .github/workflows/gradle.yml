@@ -14,7 +14,6 @@ jobs:
       contents: read
       id-token: write  # Necesario para el escaneo con SonarCloud
 
-      
     steps:
     - name: Checkout código
       uses: actions/checkout@v4
@@ -22,31 +21,28 @@ jobs:
     - name: Dar permisos de ejecución al Gradle Wrapper
       run: chmod +x gradlew
 
-    - name: Construir con Gradle
-      run: ./gradlew build
-    - uses: actions/checkout@v4
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
 
-    # Setup Gradle
     - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+      uses: gradle/actions/setup-gradle@v4
 
-    # SonarCloud Setup
     - name: Set up SonarCloud
       uses: SonarSource/sonarcloud-github-action@v2.1
       with:
-        organization: julian022  # Tu nombre de usuario en SonarCloud
-        token: ${{ secrets.SONAR_TOKEN }}  # Usa el token configurado en GitHub Secrets
+        organization: julian022  
+        token: "1bcc5c902b3f4253bcc216d52cbf86b53a186413"  
 
     - name: Build with Gradle Wrapper and analyze with SonarCloud
-      run: ./gradlew clean build sonarqube -Dsonar.projectKey=your_project_key  # Reemplaza con tu projectKey
-        -Dsonar.organization=julian022  # Tu organización en SonarCloud
-        -Dsonar.host.url=https://sonarcloud.io
-
+      run: |
+        ./gradlew clean build sonarqube \
+          -Dsonar.projectKey=your_project_key \  # Reemplaza con tu projectKey
+          -Dsonar.organization=julian022 \  
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=1bcc5c902b3f4253bcc216d52cbf86b53a186413  
   dependency-submission:
     runs-on: ubuntu-latest
     permissions:
@@ -61,4 +57,4 @@ jobs:
         distribution: 'temurin'
 
     - name: Generate and submit dependency graph
-      uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+      uses: gradle/actions/dependency-submission@v4
