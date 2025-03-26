@@ -32,12 +32,13 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build
 
-      # SonarCloud Setup
+      # 🔹 SonarCloud Setup corregido
       - name: Set up SonarCloud
         uses: SonarSource/sonarcloud-github-action@v2.1
+        env:
+          SONAR_TOKEN: "1bcc5c902b3f4253bcc216d52cbf86b53a186413"
         with:
-          organization: "julian022"  # Nombre de usuario en SonarCloud
-          token: "1bcc5c902b3f4253bcc216d52cbf86b53a186413"  # Token en texto plano (no recomendado)
+          organization: julian022
 
       - name: Build and analyze with SonarCloud
         run: |
