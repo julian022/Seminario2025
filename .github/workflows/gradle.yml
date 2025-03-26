@@ -29,8 +29,10 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3  # Usa la versión estable más reciente
 
+
       - name: Build with Gradle
         run: ./gradlew clean build
+
 
       # 🔹 SonarCloud Setup corregido
       - name: Set up SonarCloud
