@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class ProveedorService {
+
     @Autowired
     private ProveedorRepository proveedorRepository;
 
@@ -16,12 +17,12 @@ public class ProveedorService {
         return proveedorRepository.findAll();
     }
 
-    public Proveedor save(Proveedor proveedor) {
-        return proveedorRepository.save(proveedor);
-    }
-
     public Proveedor findById(Long id) {
         return proveedorRepository.findById(id).orElse(null);
+    }
+
+    public Proveedor save(Proveedor proveedor) {
+        return proveedorRepository.save(proveedor);
     }
 
     public void deleteById(Long id) {

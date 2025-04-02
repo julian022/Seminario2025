@@ -1,6 +1,5 @@
 package com.inventario.demo.controller;
 
-
 import com.inventario.demo.model.Proveedor;
 import com.inventario.demo.services.ProveedorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +27,6 @@ public class ProveedorController {
     @GetMapping("/{id}")
     public Proveedor getProveedorById(@PathVariable Long id) {
         return proveedorService.findById(id);
-    }
-
-    @PutMapping("/{id}")
-    public Proveedor updateProveedor(@PathVariable Long id, @RequestBody Proveedor proveedorDetails) {
-        Proveedor proveedor = proveedorService.findById(id);
-        if (proveedor != null) {
-            proveedor.setNombre(proveedorDetails.getNombre());
-            proveedor.setContacto(proveedorDetails.getContacto());
-            return proveedorService.save(proveedor);
-        }
-        return null;
     }
 
     @DeleteMapping("/{id}")
