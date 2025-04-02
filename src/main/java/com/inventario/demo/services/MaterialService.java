@@ -23,7 +23,9 @@ public class MaterialService {
     public Material findById(Long id) {
         return materialRepository.findById(id).orElse(null);
     }
-
+    public List<Material> buscarPorNombre(String nombre) {
+        return materialRepository.findByNombreContainingIgnoreCase(nombre);
+    }
     public void deleteById(Long id) {
         materialRepository.deleteById(id);
     }

@@ -18,6 +18,7 @@ public class Material {
 
     @Column(nullable = false)
     private int cantidad;
+    
 
     @Column(name = "stock_minimo", nullable = false)
     private int stockMinimo;
