@@ -26,9 +26,13 @@ dependencies {
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    annotationProcessor 'org.projectlombok:lombok' // Necesario para Lombok
     
-    annotationProcessor 'org.projectlombok:lombok'  // Necesario para Lombok
+    //Dependencia para enviar correos
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
+
 sonarqube {
     properties {
         property "sonar.projectKey", "1bcc5c902b3f4253bcc216d52cbf86b53a186413"          // 🔁 Reemplaza con tu clave de proyecto en SonarCloud
