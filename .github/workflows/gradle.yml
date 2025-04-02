@@ -7,13 +7,27 @@ on:
     branches: [ "develop" ]
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write  # Necesario para el escaneo con SonarCloud
 
+
     steps:
+
+      
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v4
+
+    - name: Dar permisos de ejecución al Gradle Wrapper
+      run: chmod +x gradlew
+
+    - name: Construir con Gradle
+      run: ./gradlew build
+
     - uses: actions/checkout@v4
     - name: Set up JDK 17
       uses: actions/setup-java@v4
@@ -30,7 +44,11 @@ jobs:
       uses: SonarSource/sonarcloud-github-action@v2.1
       with:
         organization: julian022  # Tu nombre de usuario en SonarCloud
+
         token: ${{ secrets.SONAR_TOKEN }}  # Usa el token configurado en GitHub Secrets
+
+        token: ${{ 1bcc5c902b3f4253bcc216d52cbf86b53a186413 }}  # Usa el token configurado en GitHub Secrets
+
 
     - name: Build with Gradle Wrapper and analyze with SonarCloud
       run: ./gradlew clean build sonarqube -Dsonar.projectKey=your_project_key  # Reemplaza con tu projectKey
