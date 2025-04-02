@@ -8,9 +8,13 @@ on:
 
 jobs:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   
 >>>>>>> origin/develop
+=======
+
+>>>>>>> edcfbdacb727d08007944bbebd3e2fa7a15c8c95
   build:
     runs-on: ubuntu-latest
     permissions:
@@ -18,8 +22,14 @@ jobs:
       id-token: write  # Necesario para el escaneo con SonarCloud
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     steps:
 =======
+=======
+
+    steps:
+
+>>>>>>> edcfbdacb727d08007944bbebd3e2fa7a15c8c95
       
     steps:
     - name: Checkout código
@@ -30,7 +40,11 @@ jobs:
 
     - name: Construir con Gradle
       run: ./gradlew build
+<<<<<<< HEAD
 >>>>>>> origin/develop
+=======
+
+>>>>>>> edcfbdacb727d08007944bbebd3e2fa7a15c8c95
     - uses: actions/checkout@v4
     - name: Set up JDK 17
       uses: actions/setup-java@v4
@@ -48,10 +62,18 @@ jobs:
       with:
         organization: julian022  # Tu nombre de usuario en SonarCloud
 <<<<<<< HEAD
+<<<<<<< HEAD
         token: ${{ secrets.SONAR_TOKEN }}  # Usa el token configurado en GitHub Secrets
 =======
         token: ${{ 1bcc5c902b3f4253bcc216d52cbf86b53a186413 }}  # Usa el token configurado en GitHub Secrets
 >>>>>>> origin/develop
+=======
+
+        token: ${{ secrets.SONAR_TOKEN }}  # Usa el token configurado en GitHub Secrets
+
+        token: ${{ 1bcc5c902b3f4253bcc216d52cbf86b53a186413 }}  # Usa el token configurado en GitHub Secrets
+
+>>>>>>> edcfbdacb727d08007944bbebd3e2fa7a15c8c95
 
     - name: Build with Gradle Wrapper and analyze with SonarCloud
       run: ./gradlew clean build sonarqube -Dsonar.projectKey=your_project_key  # Reemplaza con tu projectKey
