@@ -48,4 +48,9 @@ public class MaterialController {
     public void deleteMaterial(@PathVariable Long id) {
         materialService.deleteById(id);
     }
+    @GetMapping("/buscar")
+    public ResponseEntity<List<Material>> buscar(@RequestParam String nombre) {
+        List<Material> resultado = materialService.buscarPorNombre(nombre);
+        return ResponseEntity.ok(resultado);
+    }
 }
