@@ -36,5 +36,40 @@ build/
 .gradle/
 *.lock
 *.bin
+build/
 
-    
+    # Sistema
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Maven
+target/
+
+# Gradle
+.gradle/
+build/
+
+# Logs
+*.log
+
+# Java
+*.class
+
+# Configs temporales
+*.env
+*.bak
+*.tmp
+
+# Sistema operativo
+*.swp
+*.swo
+*.~undo-tree~
+
+# Otros
+bin/
+out/

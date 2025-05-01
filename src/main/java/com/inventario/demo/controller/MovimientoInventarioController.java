@@ -1,7 +1,8 @@
 package com.inventario.demo.controller;
 
 import com.inventario.demo.model.MovimientoInventario;
-import com.inventario.demo.services.MovimientoInventarioService;
+import com.inventario.demo.service.MovimientoInventarioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

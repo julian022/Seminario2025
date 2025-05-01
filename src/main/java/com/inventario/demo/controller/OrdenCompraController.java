@@ -1,7 +1,8 @@
 package com.inventario.demo.controller;
 
 import com.inventario.demo.model.OrdenCompra;
-import com.inventario.demo.services.OrdenCompraService;
+import com.inventario.demo.service.OrdenCompraService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

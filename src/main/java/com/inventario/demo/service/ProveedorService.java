@@ -1,4 +1,4 @@
-package com.inventario.demo.services;
+package com.inventario.demo.service;
 
 import com.inventario.demo.model.Proveedor;
 import com.inventario.demo.repository.ProveedorRepository;

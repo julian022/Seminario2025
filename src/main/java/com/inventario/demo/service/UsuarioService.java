@@ -1,4 +1,4 @@
-package com.inventario.demo.services;
+package com.inventario.demo.service;
 
 import com.inventario.demo.model.Usuario;
 import com.inventario.demo.repository.UsuarioRepository;

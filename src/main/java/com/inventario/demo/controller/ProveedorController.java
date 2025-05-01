@@ -2,7 +2,8 @@ package com.inventario.demo.controller;
 
 
 import com.inventario.demo.model.Proveedor;
-import com.inventario.demo.services.ProveedorService;
+import com.inventario.demo.service.ProveedorService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
