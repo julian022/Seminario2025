@@ -1,51 +1,19 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
-
-# Ignorar archivos de Gradle
-.gradle/
-*.lock
-*.bin
-build/
-
-    # Sistema
+# Archivos generados por el sistema
 .DS_Store
 Thumbs.db
 
-# IDEs
+# Archivos de IDEs
 .idea/
 .vscode/
 *.iml
+*.ipr
+*.iws
+.project
+.classpath
+.factorypath
+.settings
+.sts4-cache
+.springBeans
 
 # Maven
 target/
@@ -53,6 +21,15 @@ target/
 # Gradle
 .gradle/
 build/
+*.lock
+*.bin
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
 
 # Logs
 *.log
@@ -60,16 +37,14 @@ build/
 # Java
 *.class
 
-# Configs temporales
+# Archivos temporales
 *.env
 *.bak
 *.tmp
-
-# Sistema operativo
 *.swp
 *.swo
 *.~undo-tree~
 
-# Otros
+# Otros binarios
 bin/
 out/
