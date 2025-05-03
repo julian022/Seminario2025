@@ -2,15 +2,18 @@ package com.inventario.demo.service;
 
 import com.inventario.demo.model.MovimientoInventario;
 import com.inventario.demo.repository.MovimientoInventarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class MovimientoInventarioService {
-    @Autowired
-    private MovimientoInventarioRepository movimientoRepository;
+
+    private final MovimientoInventarioRepository movimientoRepository;
+
+    public MovimientoInventarioService(MovimientoInventarioRepository movimientoRepository) {
+        this.movimientoRepository = movimientoRepository;
+    }
 
     public List<MovimientoInventario> findAll() {
         return movimientoRepository.findAll();

@@ -3,7 +3,6 @@ package com.inventario.demo.service;
 import com.inventario.demo.model.Material;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,19 +12,18 @@ import java.util.List;
 @Service
 public class ReportService {
 
-    @Autowired
     private MaterialService materialService;
 
-    // Método que genera y exporta el archivo Excel con los materiales
-    public void exportMaterialsToExcel(HttpServletResponse response) throws IOException {
-        // Obtener todos los materiales
-        List<Material> materiales = materialService.findAll();
+    // Método setter para inyectar el servicio en las pruebas
+    public void setMaterialService(MaterialService materialService) {
+        this.materialService = materialService;
+    }
 
-        // Crear un nuevo libro de Excel
+    public void exportMaterialsToExcel(HttpServletResponse response) throws IOException {
+        List<Material> materiales = materialService.findAll();
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Materiales");
 
-        // Crear encabezado de las columnas
         Row headerRow = sheet.createRow(0);
         headerRow.createCell(0).setCellValue("ID");
         headerRow.createCell(1).setCellValue("Nombre");
@@ -34,7 +32,6 @@ public class ReportService {
         headerRow.createCell(4).setCellValue("Stock Máximo");
         headerRow.createCell(5).setCellValue("Proveedor");
 
-        // Llenar los datos
         int rowNum = 1;
         for (Material material : materiales) {
             Row row = sheet.createRow(rowNum++);
@@ -43,18 +40,14 @@ public class ReportService {
             row.createCell(2).setCellValue(material.getCantidad());
             row.createCell(3).setCellValue(material.getStockMinimo());
             row.createCell(4).setCellValue(material.getStockMaximo());
-            row.createCell(5).setCellValue(material.getProveedor().getNombre());  // Asumiendo que 'Proveedor' tiene el atributo 'nombre'
+            row.createCell(5).setCellValue(material.getProveedor().getNombre());
         }
 
-             // Configurar la respuesta HTTP para que el archivo Excel sea descargado
-            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            response.setHeader("Content-Disposition", "attachment; filename=materiales.xlsx");
-
-            // Escribir el archivo Excel a la respuesta
-            workbook.write(response.getOutputStream());
-            workbook.close();
-
-}
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-Disposition", "attachment; filename=materiales.xlsx");
+        workbook.write(response.getOutputStream());
+        workbook.close();
+    }
 }
 
 
