@@ -5,6 +5,7 @@ import com.inventario.demo.model.Material;
 import com.inventario.demo.service.MaterialService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,5 +49,10 @@ public class MaterialController {
     @DeleteMapping("/{id}")
     public void deleteMaterial(@PathVariable Long id) {
         materialService.deleteById(id);
+    }
+    @GetMapping("/buscar")
+    public ResponseEntity<List<Material>> buscar(@RequestParam String nombre) {
+        List<Material> resultado = materialService.buscarPorNombre(nombre);
+        return ResponseEntity.ok(resultado);
     }
 }

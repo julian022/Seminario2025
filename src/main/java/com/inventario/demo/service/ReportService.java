@@ -46,14 +46,16 @@ public class ReportService {
             row.createCell(5).setCellValue(material.getProveedor().getNombre());  // Asumiendo que 'Proveedor' tiene el atributo 'nombre'
         }
 
-        // Configurar la respuesta HTTP para que el archivo Excel sea descargado
-        response.setContentType("application/octet-stream");
-        response.setHeader("Content-Disposition", "attachment; filename=materiales.xlsx");
+             // Configurar la respuesta HTTP para que el archivo Excel sea descargado
+            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.setHeader("Content-Disposition", "attachment; filename=materiales.xlsx");
 
-        // Escribir el archivo Excel a la respuesta
-        workbook.write(response.getOutputStream());
-        workbook.close();
-    }
+            // Escribir el archivo Excel a la respuesta
+            workbook.write(response.getOutputStream());
+            workbook.close();
+
 }
+}
+
 
 
