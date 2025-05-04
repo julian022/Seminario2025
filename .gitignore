@@ -14,7 +14,8 @@ Thumbs.db
 .settings
 .sts4-cache
 .springBeans
-
+.bin
+.lock
 # Maven
 target/
 
