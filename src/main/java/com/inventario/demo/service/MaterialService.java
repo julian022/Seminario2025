@@ -2,6 +2,8 @@ package com.inventario.demo.service;
 
 import com.inventario.demo.model.Material;
 import com.inventario.demo.repository.MaterialRepository;
+import com.inventario.demo.repository.ProveedorRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +12,12 @@ import java.util.List;
 public class MaterialService {
 
     private final MaterialRepository materialRepository;
+    private final ProveedorRepository proveedorRepository;
 
-    public MaterialService(MaterialRepository materialRepository) {
+   // Constructor que inicializa ambos repositorios
+    public MaterialService(MaterialRepository materialRepository, ProveedorRepository proveedorRepository) {
         this.materialRepository = materialRepository;
+        this.proveedorRepository = proveedorRepository;
     }
 
     public List<Material> findAll() {
@@ -20,6 +25,11 @@ public class MaterialService {
     }
 
     public Material save(Material material) {
+        Long proveedorId = material.getProveedor() != null ? material.getProveedor().getId() : null;
+
+        if (proveedorId == null || !proveedorRepository.existsById(proveedorId)) {
+            throw new IllegalArgumentException("El proveedor especificado no existe.");
+        }
         return materialRepository.save(material);
     }
 

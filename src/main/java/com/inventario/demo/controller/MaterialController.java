@@ -18,22 +18,28 @@ public class MaterialController {
     private MaterialService materialService;
 
     @GetMapping
-    public List<Material> getAllMaterials() {
-        return materialService.findAll();
+    public ResponseEntity<List<Material>> getAllMaterials() {
+        List<Material> materiales = materialService.findAll();
+        return ResponseEntity.ok(materiales);
     }
 
     @PostMapping
-    public Material createMaterial(@RequestBody Material material) {
-        return materialService.save(material);
+    public ResponseEntity<Material> createMaterial(@RequestBody Material material) {
+        Material saved = materialService.save(material);
+        return ResponseEntity.status(201).body(saved);
     }
 
     @GetMapping("/{id}")
-    public Material getMaterialById(@PathVariable Long id) {
-        return materialService.findById(id);
+    public ResponseEntity<Material> getMaterialById(@PathVariable Long id) {
+        Material material = materialService.findById(id);
+        if (material != null) {
+            return ResponseEntity.ok(material);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @PutMapping("/{id}")
-    public Material updateMaterial(@PathVariable Long id, @RequestBody Material materialDetails) {
+    public ResponseEntity<Material> updateMaterial(@PathVariable Long id, @RequestBody Material materialDetails) {
         Material material = materialService.findById(id);
         if (material != null) {
             material.setNombre(materialDetails.getNombre());
@@ -41,15 +47,19 @@ public class MaterialController {
             material.setStockMinimo(materialDetails.getStockMinimo());
             material.setStockMaximo(materialDetails.getStockMaximo());
             material.setProveedor(materialDetails.getProveedor());
-            return materialService.save(material);
+
+            Material updated = materialService.save(material);
+            return ResponseEntity.ok(updated);
         }
-        return null;
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
-    public void deleteMaterial(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteMaterial(@PathVariable Long id) {
         materialService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
+
     @GetMapping("/buscar")
     public ResponseEntity<List<Material>> buscar(@RequestParam String nombre) {
         List<Material> resultado = materialService.buscarPorNombre(nombre);

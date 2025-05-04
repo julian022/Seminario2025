@@ -23,8 +23,7 @@ class ReportServiceTest {
     @BeforeEach
     void setUp() {
         materialService = mock(MaterialService.class);
-        reportService = new ReportService();
-        reportService.setMaterialService(materialService); // Usar el setter para inyectar el mock
+        reportService = new ReportService(materialService); // Usar el constructor con argumentos
     }
 
     @Test

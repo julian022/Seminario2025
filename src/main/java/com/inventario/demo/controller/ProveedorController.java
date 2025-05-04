@@ -1,10 +1,10 @@
 package com.inventario.demo.controller;
 
-
+import com.inventario.demo.exception.ResourceNotFoundException;
 import com.inventario.demo.model.Proveedor;
 import com.inventario.demo.service.ProveedorService;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,33 +17,48 @@ public class ProveedorController {
     private ProveedorService proveedorService;
 
     @GetMapping
-    public List<Proveedor> getAllProveedores() {
-        return proveedorService.findAll();
+    public ResponseEntity<List<Proveedor>> getAllProveedores() {
+        List<Proveedor> proveedores = proveedorService.findAll();
+        return ResponseEntity.ok(proveedores);
     }
 
     @PostMapping
-    public Proveedor createProveedor(@RequestBody Proveedor proveedor) {
-        return proveedorService.save(proveedor);
+    public ResponseEntity<Proveedor> createProveedor(@RequestBody Proveedor proveedor) {
+        Proveedor nuevoProveedor = proveedorService.save(proveedor);
+        return ResponseEntity.ok(nuevoProveedor);
     }
 
     @GetMapping("/{id}")
-    public Proveedor getProveedorById(@PathVariable Long id) {
-        return proveedorService.findById(id);
+    public ResponseEntity<Proveedor> getProveedorById(@PathVariable Long id) {
+        Proveedor proveedor = proveedorService.findById(id);
+        if (proveedor == null) {
+            throw new ResourceNotFoundException("Proveedor no encontrado con id: " + id);
+        }
+        return ResponseEntity.ok(proveedor);
     }
 
     @PutMapping("/{id}")
-    public Proveedor updateProveedor(@PathVariable Long id, @RequestBody Proveedor proveedorDetails) {
+    public ResponseEntity<Proveedor> updateProveedor(@PathVariable Long id, @RequestBody Proveedor proveedorDetails) {
         Proveedor proveedor = proveedorService.findById(id);
-        if (proveedor != null) {
-            proveedor.setNombre(proveedorDetails.getNombre());
-            proveedor.setContacto(proveedorDetails.getContacto());
-            return proveedorService.save(proveedor);
+        if (proveedor == null) {
+            throw new ResourceNotFoundException("Proveedor no encontrado con id: " + id);
         }
-        return null;
+
+        proveedor.setNombre(proveedorDetails.getNombre());
+        proveedor.setContacto(proveedorDetails.getContacto());
+
+        Proveedor actualizado = proveedorService.save(proveedor);
+        return ResponseEntity.ok(actualizado);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProveedor(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteProveedor(@PathVariable Long id) {
+        Proveedor proveedor = proveedorService.findById(id);
+        if (proveedor == null) {
+            throw new ResourceNotFoundException("Proveedor no encontrado con id: " + id);
+        }
+
         proveedorService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

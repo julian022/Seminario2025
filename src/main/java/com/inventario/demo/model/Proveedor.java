@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "proveedores")
@@ -21,5 +22,6 @@ public class Proveedor {
     private String contacto;
 
     @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Material> materiales;
 }

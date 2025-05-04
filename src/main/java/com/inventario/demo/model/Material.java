@@ -1,5 +1,9 @@
 package com.inventario.demo.model;
 
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,9 +13,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Material {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     @Column(nullable = false, unique = true)
     private String nombre;
@@ -27,5 +34,6 @@ public class Material {
 
     @ManyToOne
     @JoinColumn(name = "proveedor_id")
+    @JsonBackReference
     private Proveedor proveedor;
 }
