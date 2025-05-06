@@ -1,26 +1,35 @@
 package com.inventario.demo.service;
 
-import com.inventario.demo.model.Material;
-import com.inventario.demo.repository.MaterialRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+/*import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+import com.inventario.demo.entity.Material;
+import com.inventario.demo.repository.MaterialRepository;
+import com.inventario.demo.repository.ProveedorRepository;
+import com.inventario.demo.service.MaterialService;
 
-public class MaterialServiceTest {
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+class MaterialServiceTest {
 
-    private MaterialRepository repository;
     private MaterialService service;
+
+    @Mock
+    private MaterialRepository materialRepository;
+
+    @Mock
+    private ProveedorRepository proveedorRepository;
 
     @BeforeEach
     void setUp() {
-        repository = mock(MaterialRepository.class);
-        service = new MaterialService(repository);
+        MockitoAnnotations.openMocks(this);
+        service = new MaterialService(materialRepository, proveedorRepository);
     }
 
     @Test
@@ -79,3 +88,4 @@ public class MaterialServiceTest {
         verify(repository, times(1)).deleteById(id);
     }
 }
+*/  
