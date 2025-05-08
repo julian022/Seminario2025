@@ -1,4 +1,8 @@
 package com.inventario.demo.controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 
 import com.inventario.demo.exception.ResourceNotFoundException;
 import com.inventario.demo.model.Proveedor;

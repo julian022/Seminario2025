@@ -6,6 +6,10 @@ import com.inventario.demo.service.SolicitudCompraService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 
 import java.util.List;
 
@@ -19,7 +23,7 @@ public class SolicitudCompraController {
     @GetMapping(path = "/listarSolicitudes")
     public List<SolicitudCompra> getAllSolicitudes() {
         return solicitudCompraService.findAll();
-    
+    }
     @PostMapping(path = "/crearSolicitud")
     @ResponseStatus(HttpStatus.CREATED)
     public SolicitudCompra createSolicitud(@RequestBody SolicitudCompra solicitud) {
@@ -32,7 +36,7 @@ public class SolicitudCompraController {
     }
 
     @PutMapping(path = "/actualizarSolicitud/{id}")
-    public SolicitudCompra updateSolicitud(@PathVariable Long id, @RequestBody SolicitudCompra solicitudDetails) {
+    public SolicitudCompra updateSolicitud(@PathVariable Long id, @RequestBody SolicitudCompra solicitudDetails){
         SolicitudCompra solicitud = solicitudCompraService.findById(id);
         if (solicitud != null) {
             solicitud.setCantidad(solicitudDetails.getCantidad());

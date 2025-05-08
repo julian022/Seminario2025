@@ -1,5 +1,7 @@
 package com.inventario.demo.controller;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 
 import com.inventario.demo.model.Material;
 import com.inventario.demo.service.MaterialService;
@@ -54,13 +56,13 @@ public class MaterialController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping(Path="/borrarmaterial/{id}")
+    @DeleteMapping(path="/borrarmaterial/{id}")
     public ResponseEntity<Void> deleteMaterial(@PathVariable Long id) {
         materialService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping(path"/buscarnombre")
+    @GetMapping(path = "/buscarnombre")
     public ResponseEntity<List<Material>> buscar(@RequestParam String nombre) {
         List<Material> resultado = materialService.buscarPorNombre(nombre);
         return ResponseEntity.ok(resultado);
