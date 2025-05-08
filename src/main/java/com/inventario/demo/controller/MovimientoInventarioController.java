@@ -2,7 +2,7 @@ package com.inventario.demo.controller;
 
 import com.inventario.demo.model.MovimientoInventario;
 import com.inventario.demo.service.MovimientoInventarioService;
-
+import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,7 +43,7 @@ public class MovimientoInventarioController {
         return null;
     }
 
-    @DeleteMapping(oath="borrarmovimiento/{id}")
+    @DeleteMapping(path= "borrarmovimiento/{id}")
     public void deleteMovimiento(@PathVariable Long id) {
         movimientoService.deleteById(id);
     }

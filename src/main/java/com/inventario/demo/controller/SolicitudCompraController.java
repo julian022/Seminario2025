@@ -3,7 +3,7 @@ package com.inventario.demo.controller;
 
 import com.inventario.demo.model.SolicitudCompra;
 import com.inventario.demo.service.SolicitudCompraService;
-
+import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +19,7 @@ public class SolicitudCompraController {
     @GetMapping(path = "/listarSolicitudes")
     public List<SolicitudCompra> getAllSolicitudes() {
         return solicitudCompraService.findAll();
+    }
     
     @PostMapping(path = "/crearSolicitud")
     @ResponseStatus(HttpStatus.CREATED)
