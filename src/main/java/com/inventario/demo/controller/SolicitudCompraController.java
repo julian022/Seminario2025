@@ -16,22 +16,22 @@ public class SolicitudCompraController {
     @Autowired
     private SolicitudCompraService solicitudCompraService;
 
-    @GetMapping
+    @GetMapping(path = "/listarSolicitudes")
     public List<SolicitudCompra> getAllSolicitudes() {
         return solicitudCompraService.findAll();
-    }
-
-    @PostMapping
+    
+    @PostMapping(path = "/crearSolicitud")
+    @ResponseStatus(HttpStatus.CREATED)
     public SolicitudCompra createSolicitud(@RequestBody SolicitudCompra solicitud) {
         return solicitudCompraService.save(solicitud);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path = "/buscarSolicitud/{id}")
     public SolicitudCompra getSolicitudById(@PathVariable Long id) {
         return solicitudCompraService.findById(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(path = "/actualizarSolicitud/{id}")
     public SolicitudCompra updateSolicitud(@PathVariable Long id, @RequestBody SolicitudCompra solicitudDetails) {
         SolicitudCompra solicitud = solicitudCompraService.findById(id);
         if (solicitud != null) {
@@ -43,7 +43,7 @@ public class SolicitudCompraController {
         return null;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "/eliminarSolicitud/{id}")
     public void deleteSolicitud(@PathVariable Long id) {
         solicitudCompraService.deleteById(id);
     }

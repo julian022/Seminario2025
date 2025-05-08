@@ -15,7 +15,7 @@ import lombok.*;
 public class Material {
 
 
-    @Id
+    @Id //no es necesario el column  el  jpa asume que es la columna es la de id con el @id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

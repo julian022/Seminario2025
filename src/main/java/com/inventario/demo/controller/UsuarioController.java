@@ -15,22 +15,23 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping
+    @GetMapping(path = "/listarusuarios")
     public List<Usuario> getAllUsuarios() {
         return usuarioService.findAll();
     }
 
-    @PostMapping
+    @PostMapping(path = "/crearusuario")
+    @ResponseStatus(HttpStatus.CREATED)
     public Usuario createUsuario(@RequestBody Usuario usuario) {
         return usuarioService.save(usuario);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path = "/listarusuarios/{id}")
     public Usuario getUsuarioById(@PathVariable Long id) {
         return usuarioService.findById(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(path = "/actualizarusuario/{id}")
     public Usuario updateUsuario(@PathVariable Long id, @RequestBody Usuario usuarioDetails) {
         Usuario usuario = usuarioService.findById(id);
         if (usuario != null) {
@@ -42,7 +43,7 @@ public class UsuarioController {
         return null;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "/eliminarusuario/{id}")
     public void deleteUsuario(@PathVariable Long id) {
         usuarioService.deleteById(id);
     }

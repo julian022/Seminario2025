@@ -15,22 +15,23 @@ public class MovimientoInventarioController {
     @Autowired
     private MovimientoInventarioService movimientoService;
 
-    @GetMapping
+    @GetMapping(path="/mostrartodos")
     public List<MovimientoInventario> getAllMovimientos() {
         return movimientoService.findAll();
     }
 
-    @PostMapping
+    @PostMapping(path="/crearmovimiento")
+    @ResponseStatus(HttpStatus.CREATED)
     public MovimientoInventario createMovimiento(@RequestBody MovimientoInventario movimiento) {
         return movimientoService.save(movimiento);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path="/mostrarmovimiento/{id}")
     public MovimientoInventario getMovimientoById(@PathVariable Long id) {
         return movimientoService.findById(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(path="/actualizarmovimiento/{id}")
     public MovimientoInventario updateMovimiento(@PathVariable Long id, @RequestBody MovimientoInventario movimientoDetails) {
         MovimientoInventario movimiento = movimientoService.findById(id);
         if (movimiento != null) {
@@ -42,7 +43,7 @@ public class MovimientoInventarioController {
         return null;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(oath="borrarmovimiento/{id}")
     public void deleteMovimiento(@PathVariable Long id) {
         movimientoService.deleteById(id);
     }

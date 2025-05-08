@@ -17,19 +17,19 @@ public class MaterialController {
     @Autowired
     private MaterialService materialService;
 
-    @GetMapping
+    @GetMapping(path="/listarmateriales")
     public ResponseEntity<List<Material>> getAllMaterials() {
         List<Material> materiales = materialService.findAll();
         return ResponseEntity.ok(materiales);
     }
 
-    @PostMapping
+    @PostMapping(path="/crearmaterial")
     public ResponseEntity<Material> createMaterial(@RequestBody Material material) {
         Material saved = materialService.save(material);
         return ResponseEntity.status(201).body(saved);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path="/buscarporid/{id}")
     public ResponseEntity<Material> getMaterialById(@PathVariable Long id) {
         Material material = materialService.findById(id);
         if (material != null) {
@@ -38,7 +38,7 @@ public class MaterialController {
         return ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(path="actualizarmaterial/{id}")
     public ResponseEntity<Material> updateMaterial(@PathVariable Long id, @RequestBody Material materialDetails) {
         Material material = materialService.findById(id);
         if (material != null) {
@@ -54,13 +54,13 @@ public class MaterialController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(Path="/borrarmaterial/{id}")
     public ResponseEntity<Void> deleteMaterial(@PathVariable Long id) {
         materialService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/buscar")
+    @GetMapping(path"/buscarnombre")
     public ResponseEntity<List<Material>> buscar(@RequestParam String nombre) {
         List<Material> resultado = materialService.buscarPorNombre(nombre);
         return ResponseEntity.ok(resultado);
