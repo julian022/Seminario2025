@@ -3,7 +3,7 @@
  */
 
 plugins {
-    id 'org.springframework.boot' version '3.4.3'  // Plugin de Spring Boot
+    id 'org.springframework.boot' version '3.4.5'  // Plugin de Spring Boot
     id 'io.spring.dependency-management' version '1.1.4'
     id 'java'
     id 'org.sonarqube' version '4.4.1.3373' 

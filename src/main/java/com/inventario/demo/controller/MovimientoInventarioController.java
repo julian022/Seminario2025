@@ -1,4 +1,8 @@
 package com.inventario.demo.controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 
 import com.inventario.demo.model.MovimientoInventario;
 import com.inventario.demo.service.MovimientoInventarioService;
@@ -43,7 +47,7 @@ public class MovimientoInventarioController {
         return null;
     }
 
-    @DeleteMapping(oath="borrarmovimiento/{id}")
+    @DeleteMapping(path ="borrarmovimiento/{id}")
     public void deleteMovimiento(@PathVariable Long id) {
         movimientoService.deleteById(id);
     }
