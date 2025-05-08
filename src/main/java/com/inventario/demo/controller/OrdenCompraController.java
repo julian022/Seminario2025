@@ -15,22 +15,23 @@ public class OrdenCompraController {
     @Autowired
     private OrdenCompraService ordenCompraService;
 
-    @GetMapping
+    @GetMapping(path = "/listarordenes")
     public List<OrdenCompra> getAllOrdenes() {
         return ordenCompraService.findAll();
     }
 
-    @PostMapping
+    @PostMapping(path = "/crearorden")
+    @ResponseStatus(HttpStatus.CREATED)
     public OrdenCompra createOrden(@RequestBody OrdenCompra orden) {
         return ordenCompraService.save(orden);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path = "/buscarid/{id}")
     public OrdenCompra getOrdenById(@PathVariable Long id) {
         return ordenCompraService.findById(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(path = "/actualizarorden/{id}")
     public OrdenCompra updateOrden(@PathVariable Long id, @RequestBody OrdenCompra ordenDetails) {
         OrdenCompra orden = ordenCompraService.findById(id);
         if (orden != null) {
@@ -40,7 +41,7 @@ public class OrdenCompraController {
         return null;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "/eliminarorden/{id}")
     public void deleteOrden(@PathVariable Long id) {
         ordenCompraService.deleteById(id);
     }

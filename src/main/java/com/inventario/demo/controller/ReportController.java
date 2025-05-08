@@ -18,7 +18,7 @@ public class ReportController {
     private ReportService reportService;
 
     // Endpoint para exportar materiales a Excel
-    @GetMapping("/materiales/exportar")
+    @GetMapping(path = "/materiales/exportar")
     public void exportMaterialsToExcel(HttpServletResponse response) throws IOException {
         reportService.exportMaterialsToExcel(response);
     }

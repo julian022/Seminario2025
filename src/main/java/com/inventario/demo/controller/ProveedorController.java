@@ -16,19 +16,20 @@ public class ProveedorController {
     @Autowired
     private ProveedorService proveedorService;
 
-    @GetMapping
+    @GetMapping(path = "/listarproveedores")
     public ResponseEntity<List<Proveedor>> getAllProveedores() {
         List<Proveedor> proveedores = proveedorService.findAll();
         return ResponseEntity.ok(proveedores);
     }
 
-    @PostMapping
+    @PostMapping(path = "/crearproveedor") // Cambiado a /crearproveedor
+    @ResponseStatus(HttpStatus.CREATED) // Cambiado a 201 Created   
     public ResponseEntity<Proveedor> createProveedor(@RequestBody Proveedor proveedor) {
         Proveedor nuevoProveedor = proveedorService.save(proveedor);
         return ResponseEntity.ok(nuevoProveedor);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path = "/buscarid/{id}")
     public ResponseEntity<Proveedor> getProveedorById(@PathVariable Long id) {
         Proveedor proveedor = proveedorService.findById(id);
         if (proveedor == null) {
@@ -37,7 +38,7 @@ public class ProveedorController {
         return ResponseEntity.ok(proveedor);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(path = "/actualizarproveedor/{id}")
     public ResponseEntity<Proveedor> updateProveedor(@PathVariable Long id, @RequestBody Proveedor proveedorDetails) {
         Proveedor proveedor = proveedorService.findById(id);
         if (proveedor == null) {
@@ -51,7 +52,7 @@ public class ProveedorController {
         return ResponseEntity.ok(actualizado);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "/eliminarproveedor/{id}")
     public ResponseEntity<Void> deleteProveedor(@PathVariable Long id) {
         Proveedor proveedor = proveedorService.findById(id);
         if (proveedor == null) {
